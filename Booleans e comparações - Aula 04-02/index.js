@@ -22,6 +22,8 @@ console.log(includes2); // false
  */
 
 // INCLUDES => METODO QUE VERIFICA SE UMA STRING EXISTE DENTRO DE UMA OUTRA STRING
+
 // EX: EMAIL = 'GABRIEL@GMAIL.COM'
 // EMAIL.INCLUDES('@') VERIFICA SE EXISTE A STRING '@' DENTRO DA STRING 'EMAIL'
+
 // pode ser usado em string e arrays
