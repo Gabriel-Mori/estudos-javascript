@@ -20,8 +20,11 @@
     4
     5
 */
-
-
+// let index = 0;
+// while (index <= 5) {
+//   console.log(`contando ... ${index}`);
+//   index++;
+// }
 
 /*
   02 - Comente a declaração da let e o loop acima e:
@@ -29,7 +32,9 @@
   - Utilizando um for loop, faça o mesmo que foi pedido no exercício 01.
 */
 
-
+// for (let index = 0; index <= 5; index++) {
+//   console.log(`contando ... ${index}`);
+// }
 
 /*
   03 - Comente o loop acima e:
@@ -41,8 +46,15 @@
 
   "Esta é a Xª vez que esta frase é exibida no console."
 */
+// for (let index = 1; index <= 10; index++) {
+//   console.log(`Esta é a ${index} vez que esta frase é exibida no console`);
+// }
 
-
+// let i = 1;
+// while (i <= 10) {
+//   console.log(`Esta é a ${i} vez que esta frase é exibida no console`);
+//   i++;
+// }
 
 /*
   04 - Comente o loop acima e:
@@ -54,8 +66,15 @@
   - Para ver se deu certo, exiba o upperCaseCities no console.
 */
 
-const cities = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais']
+const cities = ["São Paulo", "Rio de Janeiro", "Minas Gerais"];
 
+let upperCaseCities = [];
+
+for (let i = 0; i < cities.length; i++) {
+  upperCaseCities.push(cities[i].toUpperCase());
+}
+
+// console.log(upperCaseCities);
 /*
   05 - Comente o console.log acima e:
 
@@ -65,7 +84,14 @@ const cities = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais']
     <li>João Grilo</li><li>Chicó</li><li>Rosinha</li>
 */
 
-const names = ['João Grilo', 'Chicó', 'Rosinha']
+const names = ["João Grilo", "Chicó", "Rosinha"];
+
+let template = "";
+
+for (let i = 0; i < names.length; i++) {
+  template += `<li>${names[i]}</li>`;
+}
+// console.log(template);
 
 /*
   06 - Comente o console.log acima e:
@@ -76,7 +102,14 @@ const names = ['João Grilo', 'Chicó', 'Rosinha']
   - O console deve exibir true.
 */
 
-const numbers = ['91', '5', '30', '97', '83', '31']
+const numbers = ["91", "5", "30", "97", "83", "31"];
+
+// let sum = 0;
+
+// for (let i = 0; i < numbers.length; i++) {
+//   sum += Number(numbers[i]);
+// }
+// console.log(sum);
 
 /*
   07 - Comente o console.log acima.
@@ -97,8 +130,22 @@ const numbers = ['91', '5', '30', '97', '83', '31']
 */
 
 const arrays = [
-  [4, 32, 8],
-  [64, 8, 32],
-  [8, 32, 16],
-  [2, 8, 4]
-]
+  [4, 32, 8], // 44
+  [64, 8, 32], // 104
+  [8, 32, 16], // 56
+  [2, 8, 4], // 14
+];
+
+let total = 0;
+
+for (let i = 0; i < arrays.length; i++) {
+  // esse for percorre cada array
+  // console.log(arrays[i]);
+  for (let j = 0; j < arrays[i].length; j++) {
+    // esse for percorre cada item da posição do array
+    // console.log(arrays[i][j]);
+    total += arrays[i][j];
+  }
+}
+
+console.log(total); // 218

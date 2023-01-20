@@ -35,7 +35,7 @@ const sentence = `Minhas 3 séries favoritas são: ${my3FavoriteTVShows.join(
   - Utilize o método adequado para fazer essa verificação;
   - Exiba no console o boolean que a "isRandomTVShowIncluded" recebeu.
 
-logica é ~≳ 
+logica  ~≳ 
 -- randomTVShow recebe valor "sobrenatural"
 -- se a série que a "randomTVShow" armazena é uma das suas 3 séries favoritas;. 
 -- onde eu armazeno as minhas 3 series favoritas? em uma constante my3FavoriteTVShows
