@@ -125,26 +125,26 @@ const crazyArray = [
   false,
 ];
 
-let number = 0;
-let boolean = 0;
-let string = 0;
+let isNumber = 0;
+let isBoolean = 0;
+let isString = 0;
 
 for (let i = 0; i < crazyArray.length; i++) {
-  const crazy = typeof crazyArray[i];
-  const isNumber = crazy === "number";
-  const isString = crazy === "boolean";
-
-  if (isNumber) {
-    number++;
-  } else if (isString) {
-    boolean++;
+  let typeArray = typeof crazyArray[i];
+  console.log(typeArray);
+  let typeNumber = typeArray === "number";
+  let typeBoolean = typeArray === "boolean";
+  if (typeNumber) {
+    isNumber++;
+  } else if (typeBoolean) {
+    isBoolean++;
   } else {
-    string++;
+    isString++;
   }
 }
 
 console.log(
-  `O crazyArray tem ${boolean} booleans, ${number} números e ${string} strings.`
+  `O crazyArray tem ${isBoolean} booleans, ${isNumber} números e ${isString} strings.`
 );
 
 /*
@@ -166,19 +166,18 @@ console.log(
 
 const randomNumbers = [73, 4, 67, 10, 31, 58];
 
-let oddNumbers = [];
-let evenNumbers = [];
+let isPar = [];
+let isImpar = [];
 
 for (let i = 0; i < randomNumbers.length; i++) {
   if (randomNumbers[i] % 2 === 0) {
-    evenNumbers.push(randomNumbers[i]);
+    isPar.push(randomNumbers[i]);
   } else {
-    oddNumbers.push(randomNumbers[i]);
+    isImpar.push(randomNumbers[i]);
   }
 }
 
 console.log(
-  `Numeros ímpares: ${oddNumbers.join(
-    ", "
-  )} . Números pares: ${evenNumbers.join(", ")}`
+  `Numeros ímpares: ${isImpar.join(", ").replace(", 3", " e 3")}.
+     Números pares: ${isPar.join(", ").replace(", 5", " e 5")}.`
 );
