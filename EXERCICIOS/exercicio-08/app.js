@@ -79,15 +79,13 @@ const millennialWords = [
 
 function upper(array = []) {
   let newArray = [];
-
   for (let i = 0; i < array.length; i++) {
     newArray.push(array[i].toUpperCase());
   }
-
   return newArray;
 }
-
 log(upper(millennialWords));
+
 /*
   05
 
@@ -104,17 +102,18 @@ const randomNumbers = [-2, 93, 34, -1, 1, 93, 11, -7, 47, -3];
 let isPositive = 0;
 let isNegative = 0;
 
-function numbersPositive(number = 0) {
+function randomAmouts(number = 0) {
   return number >= 1;
 }
 
 for (let i = 0; i < randomNumbers.length; i++) {
-  if (numbersPositive(randomNumbers[i])) {
+  if (randomAmouts(randomNumbers[i])) {
     isPositive++;
   } else {
     isNegative++;
   }
 }
+
 console.log(
   `O array "randomNumbers" possui ${randomNumbers.length} números, sendo ${isPositive} positivos e ${isNegative} negativos.`
 );
