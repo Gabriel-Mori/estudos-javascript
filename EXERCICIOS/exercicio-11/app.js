@@ -4,7 +4,7 @@
   - Declare uma constante que recebe o seu nome;
   - Ela deve ter um escopo global.
 */
-
+const name = "Gabriel Mori";
 /*
   02
 
@@ -16,8 +16,17 @@
     dentro da função;
   - Um erro com a mensagem "Uncaught ReferenceError: SUA_VARIÁVEL is not  
     defined" será exibido no console;
-  - Você sabe por que isso aconteceu?
+  - Você sabe por que isso aconteceu? -->
+    minha variavel é local, declarada dentro de uma função, por isso ocorre este erro
 */
+
+const myAge = () => {
+  let age = 25;
+  // console.log(age);
+};
+
+myAge();
+// console.log(age);
 
 /*
   03
@@ -36,24 +45,46 @@
     - getColorsMessage, que é um método que retorna a mensagem  
       "O NOME_DO_CARRO está disponível nas cores COR_01, COR_02 e COR_03".
 */
+const car = {
+  name: "honda civic",
+  brand: "Honda",
+  colors: ["preto", "branco", "chumbo"],
+  isRunning: false,
+  run: function () {
+    this.isRunning = true;
+    console.log(`${this.name} está em movimento`);
+  },
+  stop: function () {
+    this.isRunning = false;
+    console.log(`${this.name} está parado`);
+  },
+  getColorsMessage: function () {
+    console.log(
+      `${this.name} esta está disponível nas cores ${this.colors[0]}, ${this.colors[1]} e ${this.colors[2]}`
+    );
+  },
+};
 
 /*
   04
 
   - Faça o carro andar e exiba no console se ele realmente está em movimento.
 */
+car.run();
 
 /*
   05
 
   - Faça o carro parar e exiba no console se ele realmente está parado.
 */
+car.stop();
 
 /*
   06
 
   - Exiba, no console, a mensagem com as cores do carro.
 */
+car.getColorsMessage();
 
 /*
   07
@@ -61,3 +92,4 @@
   - Exiba, no console, a mensagem "O carro é um MARCA_DO_CARRO NOME_DO_CARRO";
   - Utilize a notação de colchetes para acessar as propriedades do carro.
 */
+console.log(`"O carro é um ${car["name"]} da marca ${car["brand"]}"`);
