@@ -9,10 +9,16 @@
 */
 
 const getCatInfo = () => {
-  const name = 'Marcos'
-  let age = 3
-  const color = 'Cinza'
-}
+  const name = "Marcos";
+  let age = 3;
+  const color = "Cinza";
+  return { name, age, color };
+};
+// console.log(
+//   `${getCatInfo().name} é um gato ${getCatInfo().color} de ${
+//     getCatInfo().age
+//   } anos.`
+// );*
 
 /*
   02
@@ -23,16 +29,18 @@ const getCatInfo = () => {
 */
 
 const external = () => {
-  const movie = 'Parasite'
+  const movie = "Parasite";
+  // console.log(movie.toUpperCase());
 
   const internal = () => {
     const extraInternal = () => {
-      console.log(movie.toUpperCase())
-    }
-  }
-}
+      console.log(movie.toUpperCase());
+    };
+  };
+  internal();
+};
 
-external()
+external();
 
 /*
   03
@@ -43,7 +51,10 @@ external()
   Dica: procure pelo método reverse, no MDN.
 */
 
-let randomNumbers = [3, 2, 1]
+let randomNumbers = [3, 2, 1];
+// console.log(randomNumbers.reverse());
+// O método reverse() inverte os itens de um array.
+// O primeiro elemento do array se torna o último e o último torna-se o primeiro
 
 /*
   04
@@ -54,10 +65,18 @@ let randomNumbers = [3, 2, 1]
 */
 
 let crazyArray = [
-  { prop1: '1', prop2: '2' },
-  function getMessage () { return 'hi' },
-  [ 5, 96, 53  ]
-]
+  { prop1: "1", prop2: "2" },
+  function getMessage() {
+    return "hi";
+  },
+  [5, 96, 53],
+];
+
+const firstElement = crazyArray.shift();
+// O método **shift()**remove o primeiro elemento de um array e retorna esse elemento.
+//  Este método muda o tamanho do array
+// console.log(firstElement);
+// console.log(crazyArray);
 
 /*
   05
@@ -69,12 +88,17 @@ let crazyArray = [
 */
 
 const dogs = [
-  { name: 'Olivia', age: 3, gender: 'Female', breed: 'Maltês' },
-  { name: 'Zé', age: 2, gender: 'Male', breed: 'Pug' },
-  { name: 'Jade', age: 4, gender: 'Female', breed: 'Shiba inu' },
-  { name: 'Zequinha', age: 7, gender: 'Male', breed: 'Poodle' },
-  { name: 'Xica', age: 6, gender: 'Female', breed: 'Chihuahua' }
-]
+  { name: "Olivia", age: 3, gender: "Female", breed: "Maltês" },
+  { name: "Zé", age: 2, gender: "Male", breed: "Pug" },
+  { name: "Jade", age: 4, gender: "Female", breed: "Shiba inu" },
+  { name: "Zequinha", age: 7, gender: "Male", breed: "Poodle" },
+  { name: "Xica", age: 6, gender: "Female", breed: "Chihuahua" },
+];
+
+const getDog = dogs.find((Element) => Element.name === "Zequinha");
+// O find() método retorna o primeiro elemento na matriz fornecida que satisfaz a função de teste fornecida.
+// Se nenhum valor satisfizer a função de teste, undefinedserá retornado.
+// console.log(getDog);
 
 /*
   06
@@ -108,10 +132,20 @@ const dogs = [
   </section>
 */
 
+const paragraph = document.querySelector(".main-title");
+
 /*
   07
 
   - Obtenha um NodeList com as referências de todos os títulos secundários da  
     página, através da classe deles;
   - Exiba esse NodeList no console.
+
 */
+
+const seccondTitle = document.querySelectorAll(".secondary-title");
+console.log(seccondTitle);
+
+seccondTitle.forEach((element) => {
+  console.log(` - ${element.innerHTML}`);
+});
