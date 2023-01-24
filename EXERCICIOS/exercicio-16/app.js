@@ -5,18 +5,20 @@
     'Clicou na div.' não seja exibida no console.
 */
 
-const div = document.querySelector('div')
-const elementsInsideDiv = Array.from(div.children)
+const div = document.querySelector("div");
+const elementsInsideDiv = Array.from(div.children);
+const h2 = document.querySelector("h2");
 
-elementsInsideDiv.forEach(element => {
-  element.addEventListener('click', () => {
-    console.log('Clicou no filho da div.')
-  })
-})
+// elementsInsideDiv.forEach((element) => {
+//   element.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log("Clicou no filho da div.");
+//   });
+// });
 
-div.addEventListener('click', () => {
-  console.log('Clicou na div.')
-})
+// div.addEventListener("click", () => {
+//   console.log("Clicou na div.");
+// });
 
 /*
   02
@@ -25,6 +27,16 @@ div.addEventListener('click', () => {
     exibida no console seja "Clicou no NOME_DA_TAG_COM_LETRAS_MINÚSCULAS, filho
     da div.".
 */
+// elementsInsideDiv.forEach((element) => {
+//   element.addEventListener("click", (e) => {
+//     e.stopPropagation();
+//     console.log(`Clicou no ${e.target.tagName.toLowerCase()} filho da div.`);
+//   });
+// });
+
+// div.addEventListener("click", () => {
+//   console.log("Clicou na div.");
+// });
 
 /*
   03
@@ -34,12 +46,27 @@ div.addEventListener('click', () => {
     filho da div, ao invés de ser exibida no console, seja inserida neste h2.
 */
 
+elementsInsideDiv.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    e.stopPropagation();
+    h2.textContent = `Clicou no ${e.target.tagName.toLowerCase()} filho da div`;
+  });
+});
+
+div.addEventListener("click", () => {
+  h2.textContent = "Clicou na div.";
+});
+
 /*
   04
 
   - Faça com que quando o texto do h2 for copiado, a mensagem "Texto copiado!"  
     seja exibida no console.
 */
+
+h2.addEventListener("copy", () => {
+  console.log("Texto copiado!");
+});
 
 /*
   05
@@ -49,12 +76,24 @@ div.addEventListener('click', () => {
     "Eixo X: COORDENADA_EIXO_X | Eixo Y: COORDENADA_EIXO_Y".
 */
 
+const divEgg = document.querySelector(".egg");
+
+divEgg.addEventListener("mousemove", (e) => {
+  divEgg.textContent = `Eixo X: ${e.offsetX} | Eixo Y: ${e.offsetY}`;
+});
+
 /*
   06
 
   - Modifique a cor do ovo para "lightgoldenrodyellow" quando o botão for 
     clicado.
 */
+
+const button = document.querySelector("button");
+
+button.addEventListener("click", () => {
+  divEgg.style.background = "lightgoldenrodyellow";
+});
 
 /*
   07
@@ -66,13 +105,31 @@ div.addEventListener('click', () => {
 */
 
 const people = [
-  { id: 1, name: 'Pedro Henrique', profession: 'Dentista' },
-  { id: 2, name: 'Fábio Alexandre', profession: 'Físico' },
-  { id: 3, name: 'Thiago Ferreira', profession: 'Veterinário' },
-  { id: 4, name: 'Marcelo Antonio', profession: 'Matemático' },
-  { id: 5, name: 'Camilla Midori', profession: 'Engenheira Civil' },
-  { id: 6, name: 'Gustavo D\'Aqui', profession: 'Gerente de Marketing' },
-  { id: 7, name: 'Ana Paula', profession: 'Front-end developer' },
-  { id: 8, name: 'Matheus Manucci', profession: 'Piloto' },
-  { id: 9, name: 'Hamilton Silva', profession: 'Advogado' }
-]
+  { id: 1, name: "Pedro Henrique", profession: "Dentista" },
+  { id: 2, name: "Fábio Alexandre", profession: "Físico" },
+  { id: 3, name: "Thiago Ferreira", profession: "Veterinário" },
+  { id: 4, name: "Marcelo Antonio", profession: "Matemático" },
+  { id: 5, name: "Camilla Midori", profession: "Engenheira Civil" },
+  { id: 6, name: "Gustavo D'Aqui", profession: "Gerente de Marketing" },
+  { id: 7, name: "Ana Paula", profession: "Front-end developer" },
+  { id: 8, name: "Matheus Manucci", profession: "Piloto" },
+  { id: 9, name: "Hamilton Silva", profession: "Advogado" },
+];
+
+const somePeople = people.some(
+  ({ profession }) => profession === "Front-end developer"
+);
+
+if (somePeople) {
+  console.log(`O array people contém, no mínimo, um(a) Front-end developer.`);
+}
+
+// const findByName = people.find(
+//   (item) => item.profession === "Front-end developer"
+// );
+
+// if (findByName) {
+//   console.log(
+//     `O array people contém, no mínimo, um(a) Front-end developer. Essa pessoa é ${findByName.name}`
+//   );
+// }
