@@ -21,6 +21,27 @@
   Dica: pesquise pelo método "insertAdjacentElement", no MDN;
 */
 
+const inputUsername = document.querySelector("#username");
+const p = document.createElement("p");
+
+inputUsername.addEventListener("keyup", (e) => {
+  const regex = /^[a-zA-Z]{6,}$/;
+  const username = e.target.value;
+  const isValid = regex.test(username);
+
+  if (isValid) {
+    p.setAttribute("class", "username-success-feedback");
+    p.textContent = "Username válido =)";
+    e.target.insertAdjacentElement("afterend", p);
+    return;
+  } else {
+    p.setAttribute("class", "username-help-feedback ");
+    e.target.insertAdjacentElement("afterend", p);
+    p.textContent =
+      "O valor deve conter no mínimo 6 caracteres, com apenas letras maiúsculas e/ou minúsculas";
+  }
+});
+
 /*
   02
 
@@ -32,6 +53,29 @@
   - Use as classes disponíveis no arquivo style.css para colorir o parágrafo;
   - Não insira o parágrafo manualmente no index.html.
 */
+
+const form = document.querySelector("form");
+const paragraph = document.createElement("p");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const username = e.target.username.value;
+  const regex = /^[a-zA-z0-9]{6,12}$/;
+  const isValid = regex.test(username);
+
+  if (isValid) {
+    paragraph.textContent = "Dados enviados =)";
+    paragraph.setAttribute("class", "submit-success-feedback ");
+    e.target.insertAdjacentElement("afterbegin", paragraph);
+
+    return;
+  } else {
+    paragraph.textContent = "Por favor, insira um username válido";
+    paragraph.setAttribute("class", "submit-help-feedback ");
+    e.target.insertAdjacentElement("afterbegin", paragraph);
+  }
+});
 
 /*
   03
@@ -49,4 +93,18 @@
       - "Correção dos exercícios da aula 04 da etapa 05" - Aula 01-01 da etapa  
         6;
     2) Pesquisar no MDN.
+
+
 */
+
+const some = (array, func) => {
+  for (let i = 0; i < array.length; i++) {
+    if (func(array[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const result = some([1, 2, 3], (item) => item === 0);
+console.log(result);

@@ -1,0 +1,22 @@
+.form {
+  width: 200px;
+  height: 200px;
+  background: rgb(0, 0, 0);
+  margin: 0 auto;
+}
+
+.sucess {
+  border: 2px solid green;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+button {
+margin: 20px 50px;  
+}
+
+input {
+  margin: 20px 8px;
+}

@@ -1,0 +1,26 @@
+.myButton {
+outline: none !important;
+
+}
+
+.Question1 {
+  display: none;
+  border-top: 2px solid salmon;
+  padding-top: 2px;
+}
+
+/* .conatiner-lead {
+  background-color: #165B9C;
+}
+
+.conatiner-lead2 {
+ background: #A3C2DA;
+} */
+
+ .ml-5 {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 780px;
+   left: 1000px;
+ }

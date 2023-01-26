@@ -4,6 +4,10 @@
   - Insira apenas o css do bootstrap no index.html.
 */
 
+{
+  /* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></link> */
+}
+
 /* 
   02
 
@@ -11,7 +15,9 @@
     mensagem "Um segundo e meio se passaram desde que a página foi carregada".
 */
 
-
+// setTimeout(() => {
+//   alert("Um segundo e meio se passaram desde que a página foi carregada");
+// }, 1500);
 
 /* 
   03
@@ -19,8 +25,24 @@
   - Faça o contador do index.html funcionar;
   - O clique no botão "Parar contador" deve fazer com que o contador exiba 0.
 */
+const buttonInit = document.querySelector(".button-init-counter");
+const buttonStop = document.querySelector(".button-stop-counter");
+const h1 = document.querySelector(".counter-container");
 
+let timer = 0;
 
+let time = null;
+
+buttonInit.addEventListener("click", () => {
+  time = setInterval(() => {
+    h1.textContent = timer + 1;
+    ++timer;
+  }, 1000);
+});
+buttonStop.addEventListener("click", () => {
+  clearInterval(time);
+  h1.textContent = 0;
+});
 
 /* 
   04
@@ -29,12 +51,15 @@
   - Adicione mais 2 alternativas em cada pergunta do quiz.
 */
 
+//--OK
+
 /* 
   05
 
   - Modifique a ordem das alternativas corretas. Ou seja, faça com que a  
     alternativa correta das perguntas não seja apenas a alternativa "B".
 */
+//  --OK
 
 /* 
   06
@@ -46,6 +71,7 @@
       funções isoladas;
     - Depois, cuide da legibilidade das funções.
 */
+//-- OK
 
 /* 
   07

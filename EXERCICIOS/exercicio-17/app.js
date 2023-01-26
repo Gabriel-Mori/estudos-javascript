@@ -3,6 +3,11 @@
 
   - No envio do form, faça com que a página não seja recarregada.
 */
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 /*
   02
@@ -11,6 +16,12 @@
     input e exiba-o no console.
 */
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // console.log(e.target.input.value);
+});
+
 /*
   03
 
@@ -18,6 +29,9 @@
     index.html;
   - Exiba no console o boolean no qual este teste resulta.
 */
+const p = document.querySelector("p");
+const regex = /documentation/;
+const resulti = regex.test(p.textContent);
 
 /*
   04
@@ -27,8 +41,11 @@
   - Teste se o match aconteceu e exiba o resultado no console.
 */
 
-const B99message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta'
-
+const B99message =
+  "E o Terry Crews faz tudo, inclusive tocar a abertura de B99 na flauta";
+const B99Regex = /[A-Z0-9]{3}/;
+const result = B99Regex.test(B99message);
+// console.log(result);
 /*
   05
 
@@ -36,11 +53,11 @@ const B99message = 'E o Terry Crews faz tudo, inclusive tocar a abertura de B99 
     resultado do teste entre a regex e a string exibido no console seja true.
 */
 
-const word = 'O que a NASA fotografou no dia do seu aniversário?'
-const NASARegex = /^[A-Z]{4}$/
-const NASAResult = NASARegex.test(word)
+const word = "NASA";
+const NASARegex = /^[A-Z]{4}$/;
+const NASAResult = NASARegex.test(word);
 
-console.log(NASAResult)
+// console.log(NASAResult);
 
 /*
   06
@@ -55,6 +72,19 @@ console.log(NASAResult)
     - "jozeti" não é um valor válido, pois contém 6 caracteres.
 */
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = e.target.input.value;
+  const regexTeste = /.{7,}/;
+  const regexResult = regexTeste.test(username);
+
+  if (regexResult) {
+    // console.log("O valor inserido no input é válido =)");
+  } else {
+    // console.log("Valor inválido =(");
+  }
+});
+
 /*
   07
 
@@ -66,3 +96,16 @@ console.log(NASAResult)
     - "0xY79aYx54e" é um valor válido, pois contém 11 letras e números;
     - "eich_1961" não é um valor válido, pois contém um caractere especial.
 */
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const username = e.target.input.value;
+  const regexTeste = /^[a-zA-Z0-9]{7,11}/;
+  const regexResult = regexTeste.test(username);
+
+  if (regexResult) {
+    console.log("O valor inserido no input é válido =)");
+  } else {
+    console.log("Valor inválido =(");
+  }
+});
