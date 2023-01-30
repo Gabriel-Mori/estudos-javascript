@@ -29,7 +29,7 @@ addformToDo.addEventListener("submit", (e) => {
       </li>
     `;
 
-    e.target.reset(); // metodo reset: ja tem restaura os valores default de uma elemento do form
+    e.target.reset(); // metodo reset: ja tem valor default ''. restaura os valores default de um elemento
   }
   console.log();
 });
