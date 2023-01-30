@@ -19,18 +19,6 @@ const message = "Próxima etapa: 10";
 const numbers = [979, 2673, 41, 77, 276, 554, 399, 385, 65, 726, 635, 833, 462];
 // console.log(numbers.includes(635));
 
-function sum(number1, number2) {
-  return number1 * number2;
-}
-
-const reultiFunc = sum(3, 5);
-
-function result(number) {
-  return `a soma dos dois numero é: ${number}`;
-}
-
-console.log(result(reultiFunc));
-
 /*
   A partir daqui, vamos treinar nossas skills de refatoração.
 
