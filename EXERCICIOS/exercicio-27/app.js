@@ -4,17 +4,19 @@
   - Implemente um código assíncrono entre os console.log() abaixo.
 */
 
-console.log('Linha 1')
-console.log('Linha 2')
-console.log('Linha 3')
-console.log('Linha 4')
+// console.log("Linha 1");
+// console.log("Linha 2");
+// console.log("Linha 3");
+// console.log("Linha 4");
 
+// setTimeout(() => {
+//   console.log("código assíncrono");
+// }, 3000);
 
-
-console.log('Linha 5')
-console.log('Linha 6')
-console.log('Linha 7')
-console.log('Linha 8')
+// console.log("Linha 5");
+// console.log("Linha 6");
+// console.log("Linha 7");
+// console.log("Linha 8");
 
 /*
   02
@@ -23,11 +25,14 @@ console.log('Linha 8')
     "logGreeting" ser exibida no console.
 */
 
-function logGreeting (name) {
-  console.log(`olá, ${name}`)
-}
+// function logGreeting(name) {
+//   console.log(`olá, ${name}`);
+// }
+// const x = (callback) => {
+//   callback("gabriel");
+// };
 
-// x(logGreeting)
+// x(logGreeting);
 
 /*
   03
@@ -35,10 +40,11 @@ function logGreeting (name) {
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
 */
 
-const numbers = [3, 4, 10, 20]
-const lesserThanFive = numbers.filter(num => num < 5)
+const numbers = [3, 4, 10, 20];
+const getLess = (num) => num < 5;
+const lesserThanFive = numbers.filter(getLess);
 
-console.log(lesserThanFive)
+// console.log(lesserThanFive);
 
 /*
   04
@@ -46,14 +52,17 @@ console.log(lesserThanFive)
   - Refatore o código abaixo.
 */
 
-const prices = [12, 19, 7, 209]
-let totalPrice = 0
+const prices = [12, 19, 7, 209];
 
-for (let i = 0; i < prices.length; i++) {
-  totalPrice += prices[i]
-}
+const totalPrice = prices.reduce((acc, price) => acc + price, 0);
 
-console.log(`Preço total: ${totalPrice}`)
+// let totalPrice = 0;
+
+// for (let i = 0; i < prices.length; i++) {
+//   totalPrice += prices[i];
+// }
+
+// console.log(`Preço total: ${totalPrice}`);
 
 /*
   05
@@ -63,7 +72,10 @@ console.log(`Preço total: ${totalPrice}`)
   - Não insira `car['color'] = azul`.
 */
 
-let car = { color: 'amarelo' }
+let car = { color: "amarelo" };
+let seccondColor = car;
+car.color = "azul";
+// console.log(car.color, seccondColor.color);
 
 /*
   06
@@ -74,6 +86,20 @@ let car = { color: 'amarelo' }
   - Se todos os argumentos forem passados, retorne a string 'A função foi 
     invocada com 3 argumentos'.
 */
+
+// const arguments = (param1, param2, param3) => {
+//   const isSomeParameter = [param1, param2, param3].includes(undefined);
+
+//   if (isSomeParameter) {
+//     console.log("A função deve ser invocada com 3 argumentos");
+//   }
+
+//   return "A função foi invocada com 3 argumentos";
+// };
+
+// arguments();
+
+// console.log(arguments(() => {}, {}, []));
 
 /*
   07
@@ -99,5 +125,26 @@ let car = { color: 'amarelo' }
 
 let booksBox = {
   spaces: 5,
-  booksIn: 0
-}
+  booksIn: 0,
+};
+
+booksBox.addBooks = (booksQuantity) => {
+  booksBox.booksIn += booksQuantity;
+
+  console.log(`Já há ${booksBox.booksIn} livros na caixa`);
+
+  if (booksBox.booksIn === booksBox.spaces) {
+    return "A caixa já está cheia";
+  }
+
+  if (booksBox.booksIn + booksQuantity > booksBox.spaces) {
+    const plural =
+      booksBox.spaces - booksBox.booksIn === 1 ? "livro" : "livros";
+    return `Só cabem mais ${booksBox.spaces - booksBox.booksIn} ${plural}`;
+  }
+};
+
+console.log(booksBox.addBooks(2));
+console.log(booksBox.addBooks(2));
+// console.log(booksBox.addBooks(1));
+console.log(booksBox);

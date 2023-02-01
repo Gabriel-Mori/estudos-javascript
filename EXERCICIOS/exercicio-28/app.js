@@ -16,6 +16,18 @@
   - Teste também a verificação do item acima.
 */
 
+const request = new XMLHttpRequest();
+
+request.addEventListener("readystatechange", () => {
+  if (request.readyState === 4 && request.status === 200) {
+    // console.log(request.responseText);
+  }
+});
+
+// request.open("GET", "https://pokeapi.co/api/v2/pokemon/pikachu");
+// request.send();
+// console.log(request);
+
 /*
   02
 
@@ -30,6 +42,16 @@
     - Se você está andando (boolean iniciado em false);
     - Quantos metros você caminhou (number iniciado em 0).
 */
+let person = {
+  name: "gabriel",
+  seccondName: "mori",
+  gender: "masculino",
+  age: 1,
+  height: 1.73,
+  weight: 90,
+  walking: false,
+  walked: 0,
+};
 
 /*
   03
@@ -39,6 +61,16 @@
   - A cada vez que o método é invocado, 1 deve ser somado à idade atual;
   - Após criar o método, adicione 5 anos à idade do objeto.
 */
+
+// person.increment = () => {
+//   person.age++;
+// };
+
+// for (let i = 0; i < 5; i++) {
+//   person.increment(i);
+// }
+
+// console.log(myPerson.age);
 
 /*
   04
@@ -50,6 +82,19 @@
   - Após criar o método, faça a pessoa caminhar alguns metros, invocando o 
     método 4x, com diferentes metragens passadas por parâmetro.
 */
+
+person.walk = (meters) => {
+  person.walked += meters;
+  person.walking = true;
+};
+
+const meters = [7, 13, 15, 20];
+
+meters.forEach((meter) => {
+  person.walk(meter);
+});
+
+// console.log(person.walked, person.walking);
 
 /*
   05
@@ -68,6 +113,33 @@
       "metro", no singular.
 */
 
+// let person = {
+//   name: "gabriel",
+//   seccondName: "mori",
+//   sex: "male",
+//   age: 1,
+//   height: 1.73,
+//   weight: 90,
+//   walking: false,
+//   walked: 0,
+// };
+
+const getPluralOrSingular = (quantity, singular, plural) =>
+  quantity === 1 ? singular : plural;
+
+const message = () => {
+  const validAge = getPluralOrSingular(person.age, "ano", "anos");
+  const conrrectGender =
+    person.gender === "feminino" ? "feminina" : "masculino";
+  const { name, seccondName } = person;
+
+  console.log(`  Oi. Eu sou o ${name} ${seccondName}, 
+  do sexo ${conrrectGender} tenho ${person.age} ${validAge}, ${person.height} metros de altura, 
+  peso ${person.weight} quilos e, só hoje, eu já caminhei ${person.walked} 
+  metros.`);
+};
+message();
+
 /*
   06
 
@@ -79,6 +151,14 @@
     valor truthy;
     - Faça isso até que 7 valores truthy sejam passados.
 */
+
+const isTruthy = (value) => Boolean(value);
+
+const falsy = ["", 0, NaN, null, undefined, false];
+
+falsy.forEach((values) => {
+  console.log(isTruthy(values));
+});
 
 /*
   07
@@ -98,3 +178,26 @@
 
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
+
+const movies = (books) => {
+  const book = {
+    "the secret": {
+      totalPages: 500,
+      author: "rodrigo santos",
+      publisher: "sextante",
+    },
+    "as armas da persuasão": {
+      totalPages: 309,
+      author: "roberto cialdini",
+      publisher: "sextante",
+    },
+    "jurassic park": {
+      totalPages: 500,
+      author: "michael crichton",
+      publisher: "ballantine books",
+    },
+  };
+  return book[books] ? book[books] : book;
+};
+
+console.log(movies());
