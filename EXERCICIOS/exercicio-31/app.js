@@ -7,16 +7,30 @@
   - Implemente uma segunda função que exibe, no console, seus dados de usuário 
     do GitHub.
 */
+const getUser = async () => {
+  const response = await fetch("https://api.github.com/users/Gabriel-Mori");
+  return await response.json();
+};
+
+const logUser = async () => {
+  const user = await getUser();
+  console.log(user);
+};
+logUser();
 
 /*
   02
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  - A partir do array numbers (abaixo), crie um novo array que contém somente 
+  - A partir do array numbers, crie um novo array que contém somente 
     os números do array numbers que são divisíveis por 2 ou 3;
   - Exiba esse novo array no console.
 */
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const newArray = numbers.filter((num) => num % 2 === 0 || num % 3 === 0);
+// console.log(newArray);
 
 /*
   03
@@ -31,6 +45,15 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     - Natália => "PNaPtáPlia";
     - Rafaela => "PRaPfaPePla".
 */
+
+// const person = ["g", "a", "b", "r", "i", "e", "l"];
+// nome = "P" + "".join(array);
+// nome = "P" + nome;
+// print(nome);
+
+let array = ["ga", "bri", "el"];
+let nome = array.reduce((acc, syllable) => `${acc}P${syllable}`, "");
+// console.log(nome);
 
 /*
   04
@@ -47,6 +70,14 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   Dica: pesquise pelo método split.
 */
 
+const myName = "Gabriel";
+const splitName = myName.split("");
+// console.log(splitName);
+
+// const splinter = splitName.forEach((item, index) =>
+//   console.log(`"${item}" é a ${index + 1}ª letra do meu nome.`)
+// );
+
 /*
   05
 
@@ -59,9 +90,16 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   Dica: pesquise pelo método Object.keys().
 */
+const object = {
+  name: String,
+  lastname: String,
+  age: Number,
+};
+// console.log(Object.keys(object));
 
 /*
   06
+  em javascript
 
   - Implemente uma função que retorna as ocorrências de um determinado valor em 
     um array;
@@ -72,8 +110,18 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     2, pois há duas ocorrências do número 1 no array;
   - Utilize o array abaixo para testar a função.
 */
+const countValueInArray = (arr, value) => {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === value) {
+      count++;
+    }
+  }
+  return count;
+};
 
-const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
+const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60];
+console.log(countValueInArray(scores, 100)); // Output: 3
 
 /*
   07
@@ -98,3 +146,29 @@ const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
   Dica: lembre-se que o método filter inclui o item em questão no novo array 
   que está sendo gerado **apenas** se a função retorna um valor truthy.
 */
+
+const filter = (array, func) => {
+  let newArray = [];
+
+  const filtered = (item, index, array) => {
+    const itemShould = func(item, index, array);
+    if (itemShould) {
+      newArray.push(item);
+    }
+  };
+
+  array.forEach(filtered);
+
+  return newArray;
+};
+
+console.log(filter([1, 2, 3], (item) => item)); // [1, 2, 3];
+console.log(filter([0, 1, 2], (item) => item)); // [1, 2]
+console.log(filter([1, 2, 3], (item) => item < 2)); // [1];
+console.log(filter([1, 2, 3, 5], (item, index) => item === index + 1)); // [1, 2, 3];
+console.log(
+  filter(
+    [1, 2, 3, 2, 1, 5],
+    (item, index, array) => index === array.indexOf(item)
+  )
+); // [1, 2, 3, 5];
