@@ -5,6 +5,16 @@
     e retorna o valor da key parseado para objeto javascript.
 */
 
+const myObj = { a: 1, b: 2 };
+
+localStorage.setItem("myObj", JSON.stringify(myObj));
+
+const getObject = (keyName) => {
+  const keyValue = localStorage.getItem(keyName);
+  return JSON.parse(keyValue);
+};
+// console.log(getObject("myObj"));
+
 /*
   02
 
@@ -18,11 +28,12 @@
   Dica: pesquise por valueAsNumber.
 */
 
-const input = document.querySelector('[data-js="input"]')
+const input = document.querySelector('[data-js="input"]');
 
-input.addEventListener('input', event => {
-  console.log(event.target.value)
-})
+input.addEventListener("input", (event) => {
+  // console.log(typeof parseInt(event.target.value));
+  // console.log(typeof parseInt(event.target.valueAsNumber));
+});
 
 /*
   03
@@ -39,28 +50,31 @@ input.addEventListener('input', event => {
     retornar 60 e a segunda invocação, 10.
 */
 
-function add100 (num) {
-  return num + 100
+function add100(num) {
+  return num + 100;
 }
 
-function divByFive (num) {
-  return num / 5
+function divByFive(num) {
+  return num / 5;
 }
 
-function multiplyByThree (num) {
-  return num * 3
+function multiplyByThree(num) {
+  return num * 3;
 }
 
-function multiplyFive (num) {
-  return num * 5
+function multiplyFive(num) {
+  return num * 5;
 }
 
-function addTen (num) {
-  return num + 10
+function addTen(num) {
+  return num + 10;
 }
+const combineOperations = (valorInit, array) => {
+  return array.reduce((acc, func) => func(acc), valorInit);
+};
 
-// console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
-// console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
+// console.log(combineOperations(0, [add100, divByFive, multiplyByThree]));
+// console.log(combineOperations(0, [divByFive, multiplyFive, addTen]));
 
 /*
   04
@@ -72,37 +86,39 @@ function addTen (num) {
 const albums = [
   {
     id: 537,
-    title: 'The Dark Side of the Moon',
-    artist: 'Pink Floyd',
-    price: 59.90,
-    genre: 'Progressive Rock'
+    title: "The Dark Side of the Moon",
+    artist: "Pink Floyd",
+    price: 59.9,
+    genre: "Progressive Rock",
   },
   {
     id: 975,
-    title: 'Houses of the Holy',
-    artist: 'Led Zeppelin',
-    price: 81.00,
-    genre: 'Rock'
+    title: "Houses of the Holy",
+    artist: "Led Zeppelin",
+    price: 81.0,
+    genre: "Rock",
   },
   {
     id: 359,
-    title: 'Heaven and Hell',
-    artist: 'Black Sabbath',
-    price: 49.90,
-    genre: 'Heavy metal'
-  }
-]
+    title: "Heaven and Hell",
+    artist: "Black Sabbath",
+    price: 49.9,
+    genre: "Heavy metal",
+  },
+];
 
 const searchAlbum = {
   id: 975,
-  title: 'Houses of the Holy',
-  artist: 'Led Zeppelin',
-  price: 81.00,
-  genre: 'Rock'
-}
+  title: "Houses of the Holy",
+  artist: "Led Zeppelin",
+  price: 81.0,
+  genre: "Rock",
+};
 
-if (albums.includes(searchAlbum)) {
-  console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
+const someAlbum = albums.some((album) => album.id === searchAlbum.id);
+
+if (someAlbum) {
+  // console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`);
 }
 
 /*
@@ -112,16 +128,17 @@ if (albums.includes(searchAlbum)) {
 */
 
 const obj = {
-  prop1: 'a',
-  prop2: 'b',
+  prop1: "a",
+  prop2: "b",
   prop3: null,
   prop4: true,
   prop5: false,
   prop6: [9, { x: 1, y: 2 }],
   prop7: 7,
-  prop8: { a: 'x', b: 'y' },
-}
-
+  prop8: { a: "x", b: "y" },
+};
+const object = JSON.stringify(obj, null, 2);
+const newObj = JSON.parse(object);
 /*
   06
 
@@ -132,6 +149,24 @@ const obj = {
 
   Dica: pesquise por Object.entries.
 */
+const createElement = (elementName, attibutes) => {
+  const element = document.createElement(elementName);
+  const attributesAsArray = Object.entries(attibutes);
+
+  attributesAsArray.forEach(([key, value]) => element.setAttribute(key, value));
+  return element;
+};
+
+const create = createElement("input", {
+  type: "radio",
+  id: "input1",
+  name: "mani",
+  value: "principal",
+  for: "input1",
+  "data-js": "input1",
+});
+
+console.log(create);
 
 /*
   07

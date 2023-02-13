@@ -42,6 +42,7 @@ dígitos. Ex.: 1930.
 */
 
 const myBirthYear = 1997;
+z;
 
 /*
 06 - Declare uma const "currentYear", que recebe o ano atual, com 4 dígitos.
@@ -97,6 +98,6 @@ da const myBirthYear;
 - Cole as duas linhas de código no console, pressione enter, feche o console e  
 veja o que acontece.
 
-document.querySelector('#birthYear').value = SEU_ANO_DE_NASCIMENTO
+document.querySelector('#birthYear').value = myBirthYear
 document.querySelector('.formButton').click()
 */

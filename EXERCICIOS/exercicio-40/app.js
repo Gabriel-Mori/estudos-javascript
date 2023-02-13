@@ -4,8 +4,8 @@
   Implemente abaixo uma forma de digitar menos ao exibir 
   valores no console no decorrer dessa bateria de exercícios.
 */
-
-
+const log = (...value) => console.log(...value);
+// log("oi");
 
 /*
   02
@@ -19,14 +19,18 @@
 const objs = [
   { a: 213, b: 965, c: 522 },
   { c: 2333, a: 1321, b: 545 },
-  { b: 993, c: 345, a: 781 }
-]
+  { b: 993, c: 345, a: 781 },
+];
 
-const propToRemove = 'b'
+const propToRemove = "b";
 
+// const removeProp = (array, contains) => {
+//   return contains.map(({ [array]: _, ...item }) => {
+//     return item;
+//   });
+// };
 
-
-// removeProp(propToRemove, objs)
+// log(removeProp(propToRemove, objs));
 
 /*
 [
@@ -55,16 +59,27 @@ const propToRemove = 'b'
 */
 
 const orders = [
-  { username: 'f_gazi', status: 'pending', price: 63.97 },
-  { username: 'heitordp', status: 'cancelled', price: 79 },
-  { username: 'a_campos', status: 'shipped', price: 97.63 },
-  { username: 'rafaq', status: 'pending', price: 67 },
-  { username: '_rick', status: 'shipped', price: 73.65 }
-]
+  { username: "f_gazi", status: "pending", price: 63.97 },
+  { username: "f_gazi", status: "pending", price: 63.97 },
+  { username: "heitordp", status: "cancelled", price: 79 },
+  { username: "a_campos", status: "shipped", price: 97.63 },
+  { username: "a_campos", status: "shipped", price: 97.63 },
+  { username: "a_campos", status: "shipped", price: 97.63 },
+  { username: "a_campos", status: "shipped", price: 97.63 },
+  { username: "rafaq", status: "pending", price: 67 },
+  { username: "_rick", status: "shipped", price: 73.65 },
+];
 
+const getStatusCount = (quantity) =>
+  quantity.reduce((acc, order) => {
+    const obj = {
+      ...acc,
+      [order.status]: (acc[order.status] || 0) + 1,
+    };
+    return obj;
+  }, {});
 
-
-// getStatusCount(orders)
+log(getStatusCount(orders));
 
 /*
 {
@@ -87,7 +102,9 @@ const orders = [
   Dica: pesquise por Intl.DateTimeFormat() constructor.
 */
 
-
+// fifa 23
+// Desenvolvido por Easports
+// Adicionado no banco em 08/02/2023 10:20
 
 /*
   05

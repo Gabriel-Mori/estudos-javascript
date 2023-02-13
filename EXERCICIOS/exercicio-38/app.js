@@ -10,8 +10,19 @@
   - Teste o método getColor do prototype dos carros.
 */
 
+const carProto = {
+  getColor() {
+    return this.color;
+  },
+};
 
+let audiA8 = Object.create(carProto);
+let volvo = Object.create(carProto);
 
+audiA8.color = "azul";
+volvo.color = "chumbo";
+
+// console.log(audiA8.getColor(), volvo.getColor());
 /*
   02
 
@@ -25,16 +36,18 @@
 */
 
 const movie = {
-  title: 'Forrest Gump',
-  director: 'Robert Zemeckis',
-  starringRole: 'Tom Hanks'
+  title: "Forrest Gump",
+  director: "Robert Zemeckis",
+  starringRole: "Tom Hanks",
+};
+
+function getSummary() {
+  const { title, director, starringRole } = this;
+  return `${title} foi dirigido por ${director} e tem ${starringRole} no papel principal.`;
 }
 
-function getSummary () {
-  return `${this.title} foi dirigido por ${this.director} e tem ${this.starringRole} no papel principal.`
-}
-
-console.log(getSummary())
+// console.log(getSummary.call(movie));
+// console.log(getSummary.apply(movie));
 
 /*
   03
@@ -48,15 +61,19 @@ console.log(getSummary())
   - Descomente o código e crie a função.
 */
 
-/*
-console.log(
-  arrayToObj([
-    ['prop1', 'value1'], 
-    ['prop2', 'value2'],
-    ['prop3', 'value3']
-  ])
-)
-*/
+const arrayToObj = (arr) =>
+  arr.reduce((acc, [key, value]) => {
+    acc[key] = value;
+    return acc;
+  }, {});
+
+// console.log(
+//   arrayToObj([
+//     ["prop1", "value1"],
+//     ["prop2", "value2"],
+//     ["prop3", "value3"],
+//   ])
+// );
 
 /*
   04
@@ -64,67 +81,60 @@ console.log(
   - Refatore as classes abaixo para factory functions.
 */
 
-const formatTimeUnits = units => units
-  .map(unit => unit < 10 ? `0${unit}` : unit)
+const formatTimeUnits = (units) =>
+  units.map((unit) => (unit < 10 ? `0${unit}` : unit));
 
 const getTime = () => {
-  const date = new Date()
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  const seconds = date.getSeconds()
+  const date = new Date();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
-  return [hours, minutes, seconds]
-}
+  return [hours, minutes, seconds];
+};
 
-const getFormattedTime = template => {
-  const [hours, minutes, seconds] = getTime()
-  const formattedTime = formatTimeUnits([hours, minutes, seconds])
+const getFormattedTime = (template) => {
+  const [hours, minutes, seconds] = getTime();
+  const formattedTime = formatTimeUnits([hours, minutes, seconds]);
 
   return template
-    .split(':')
+    .split(":")
     .map((_, index) => formattedTime[index])
-    .join(':')
-}
+    .join(":");
+};
 
-class Clock {
-  constructor ({ template }) {
-    this.template = template
-  }
+const makeClock = ({ template }) => ({
+  template,
+  render() {
+    const formattedTime = getFormattedTime(this.template);
+    console.log(formattedTime);
+  },
+  start() {
+    const oneSecond = 1000;
 
-  render () {
-    const formattedTime = getFormattedTime(this.template)
-    console.log(formattedTime)
-  }
+    this.render();
+    this.timer = setInterval(() => this.render(), oneSecond);
+  },
+  stop() {
+    clearInterval(this.timer);
+  },
+});
 
-  start () {
-    const oneSecond = 1000
+const clock = makeClock({ template: "h:m:s" });
 
-    this.render()
-    this.timer = setInterval(() => this.render(), oneSecond)
-  }
+// clock.start();
 
-  stop () {
-    clearInterval(this.timer)
-  }
-}
+const makeExtendedClock = ({ template, precision = 1000 }) => ({
+  precision,
+  ...makeClock({ template }),
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), this.precision);
+  },
+});
 
-class ExtendedClock extends Clock {
-  constructor (options) {
-    super(options)
-    
-    const { precision = 1000 } = options
-    this.precision = precision
-  }
-
-  start () {
-    this.render()
-    this.timer = setInterval(() => this.render(), this.precision)
-  }
-}
-
-const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
-
-// clock.start()
+const extendsClock = makeExtendedClock({ template: "h:m:s", precision: 1000 });
+// extendsClock.start();
 
 /*
   05
@@ -165,7 +175,25 @@ const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
         - download, com o valor 'table.csv'.
 */
 
+const tableRows = document.querySelectorAll("tr");
+const exportButton = document.querySelector('[data-js="export-table-btn"]');
+console.log();
 
+exportButton.addEventListener("click", () => {
+  const CSVString = Array.from(tableRows)
+    .map((row) =>
+      Array.from(row.cells)
+        .map((cell) => cell.textContent)
+        .join(",")
+    )
+    .join("\n");
+
+  exportButton.setAttribute(
+    "href",
+    `data:text/csvcharset=utf-8,${encodeURIComponent(CSVString)}`
+  );
+  exportButton.setAttribute("download", "table.csv");
+});
 
 /*
   06
@@ -179,8 +207,6 @@ const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
   - O procedimento é o mesmo mostrado nas aulas da etapa em que construímos 
     essa aplicação.
 */
-
-
 
 /*
   07

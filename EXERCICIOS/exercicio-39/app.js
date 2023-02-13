@@ -16,11 +16,20 @@
       array que contenha 2 números e com um outro que contenha 4 números.
 */
 
-const numbers = [50, 100, 50]
+const sum = (...args) => {
+  let sum = 0;
+  for (let arg of args) sum += arg;
+  return sum;
+};
 
-const sum = (x, y, z) => x + y + z
+let x = sum(4, 9, 16, 25, 29);
+// console.log(x);
 
-console.log(sum(...numbers))
+// const numbers = [50, 100, 50];
+
+// const sum = (x, y, z) => x + y + z;
+
+// console.log(sum(...numbers));
 
 /*
   02
@@ -36,7 +45,44 @@ console.log(sum(...numbers))
     utilizando a classe "active".
 */
 
+const accordion = document.querySelector('[data-js="accordion"]');
 
+const accordionClosedItem = (accordionHeaderToBeClosed) => {
+  const accordionBodyToBeClosed = document.querySelector(
+    `[data-accordion-body="${accordionHeaderToBeClosed.dataset.accordionHeader}"]`
+  );
+  accordionHeaderToBeClosed.classList.remove("active");
+  accordionBodyToBeClosed.classList.remove("active");
+};
+
+const handleAccordionClick = (e) => {
+  const accordionHeaderId = e.target.dataset.accordionHeader;
+  const clickedAccordionHeader = document.querySelector(
+    `[data-accordion-header="${accordionHeaderId}"]`
+  );
+  const accordionItemToBeOpened = document.querySelector(
+    `[data-accordion-body="${accordionHeaderId}"]`
+  );
+
+  const accordionHeaderToBeClosed = Array.from(
+    document.querySelectorAll('[data-js="accordion-header"]')
+  )
+    .filter((item) => item !== clickedAccordionHeader)
+    .find((accordion) => accordion.classList.contains("active"));
+
+  if (!accordionHeaderId) {
+    return;
+  }
+
+  if (accordionHeaderToBeClosed) {
+    accordionClosedItem(accordionHeaderToBeClosed);
+  }
+
+  clickedAccordionHeader.classList.toggle("active");
+  accordionItemToBeOpened.classList.toggle("active");
+};
+
+accordion.addEventListener("click", handleAccordionClick);
 
 /*
   03
@@ -55,10 +101,10 @@ console.log(sum(...numbers))
 */
 
 const volkswagenProto = {
-  logCarInfo () {
-    console.log(`Volkswagen ${this.name}, cor ${this.color}.`)
-  }
-}
+  logCarInfo() {
+    console.log(`Volkswagen ${this.name}, cor ${this.color}.`);
+  },
+};
 
 // const amarok = carMaker({ name: 'Amarok', color: 'preta' })
 // const jetta = carMaker({ name: 'Jetta', color: 'prata' })
@@ -77,11 +123,15 @@ const volkswagenProto = {
     modificando o caractere que ela recebe como segundo argumento.
 */
 
-const aString = 'O Curso de JavaScript Roger Melo funciona com turmas fechadas, abertas poucas vezes e é focado em quem ainda não é fluente em JS. Ou seja, quem não consegue construir aplicações web com JavaScript puro.'
+const aString =
+  "O Curso de JavaScript Roger Melo funciona com turmas fechadas, abertas poucas vezes e é focado em quem ainda não é fluente em JS. Ou seja, quem não consegue construir aplicações web com JavaScript puro.";
 
-
-
-// console.log(getIndexesOfCharacter(aString, 'b'))
+const getIndexesOfCharacter = (string, caractere) =>
+  [...string].reduce(
+    (acc, item, index) => (item === caractere ? [...acc, index] : acc),
+    []
+  );
+console.log(getIndexesOfCharacter(aString, "b"));
 
 /*
   05
@@ -126,8 +176,6 @@ const aString = 'O Curso de JavaScript Roger Melo funciona com turmas fechadas, 
       ela já tem + 1 e faça characterIndex receber 0.
 */
 
-
-
 /*
   06
 
@@ -135,21 +183,19 @@ const aString = 'O Curso de JavaScript Roger Melo funciona com turmas fechadas, 
 */
 
 const wrongDataFormat = [
-  'preto-PP',
-  'preto-M',
-  'preto-G',
-  'preto-GG',
-  'preto-GG',
-  'branco-PP',
-  'branco-G',
-  'vermelho-M',
-  'azul-XG',
-  'azul-XG',
-  'azul-XG',
-  'azul-P'
-]
-
-
+  "preto-PP",
+  "preto-M",
+  "preto-G",
+  "preto-GG",
+  "preto-GG",
+  "branco-PP",
+  "branco-G",
+  "vermelho-M",
+  "azul-XG",
+  "azul-XG",
+  "azul-XG",
+  "azul-P",
+];
 
 /*
   {
